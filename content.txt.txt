@@ -1,0 +1,378 @@
+# PROJECT: Campus500 AI — Student Registration Growth Platform
+
+## 1. Project Overview
+
+Build a modern, responsive web application named **Campus500 AI** that helps an event organizer acquire 500 final-year engineering student registrations in 7 days with a total marketing budget of ₹2,000.
+
+The platform should combine student registration, referral marketing, campus ambassador management, AI-assisted campaign recommendations, and real-time growth analytics.
+
+This application is being developed as a simulation project for a recruitment assignment. It should demonstrate a realistic growth strategy and working functionality without contacting students or executing the actual campaign.
+
+## 2. Technology Stack
+
+Use the following technologies:
+
+- Frontend: React.js with Vite.
+- Styling: Tailwind CSS.
+- Backend: Python FastAPI or Node.js with Express.
+- Database: SQLite for local development, with an option to use Supabase for online deployment.
+- Charts: Recharts.
+- Icons: Lucide React.
+- AI: An optional AI assistant that generates campaign recommendations from registration and referral metrics.
+- Deployment: Vercel for the frontend and a suitable backend hosting service.
+
+If a full backend cannot be configured automatically, implement a functional frontend prototype with persistent browser storage and clearly identify which features use simulated data.
+
+## 3. Design Requirements
+
+Create a professional, startup-style dashboard.
+
+Visual style:
+- Dark navy and white base colors.
+- Purple and blue accent colors.
+- Green for successful registrations.
+- Orange for warnings and budget alerts.
+- Clean cards with rounded corners.
+- Modern typography and subtle animations.
+- Mobile-responsive design.
+- Professional charts and progress indicators.
+
+The application should look like a real growth analytics product, not a basic college project.
+
+## 4. Main Pages
+
+### Page A: Landing Page
+
+Display:
+
+- Logo: Campus500 AI.
+- Headline: "Your Next Opportunity Starts Here."
+- Subheading: "Join a community of final-year engineering students building skills, connections, and career opportunities."
+- Campaign target: 500 students in 7 days.
+- Progress bar showing the registration count.
+- Benefits of joining the event.
+- Registration button.
+- Referral program explanation.
+- Frequently asked questions.
+
+Include a prominent CTA button labelled "Register Now".
+
+Do not claim that the event offers certificates, jobs, internships, prizes, or other benefits unless the organizer has confirmed them.
+
+### Page B: Student Registration
+
+Create a registration form with these fields:
+
+- Full name.
+- Email address.
+- College name.
+- Engineering branch.
+- Graduation year.
+- Interested domain: AI/ML, Web Development, Cloud Computing, Data Science, or Other.
+- Optional referral code.
+- Consent checkbox for the event's privacy notice.
+
+Validation rules:
+
+- All required fields must be completed.
+- Validate email format.
+- Graduation year should be configurable.
+- Prevent duplicate registrations using a unique email constraint.
+- Display helpful success and error messages.
+
+After successful registration:
+
+1. Generate a unique referral code.
+2. Display the student's registration confirmation.
+3. Show the referral link.
+4. Provide a WhatsApp sharing button.
+5. Display how many successful registrations came from that referral code.
+
+Use a configurable event name and event date rather than inventing actual event details.
+
+### Page C: Referral Growth Engine
+
+Build a referral marketing system.
+
+Each registered student receives a unique referral code, such as:
+
+CAMPUS-A7X2
+
+Each student also receives a shareable registration link containing the referral code.
+
+Features:
+
+- Copy referral link.
+- Copy referral code.
+- Share through WhatsApp.
+- View successful referrals.
+- View referral leaderboard.
+- Display referral conversion rate when sufficient data is available.
+
+Referral attribution rules:
+
+- Record the referral code when a visitor opens a referral link.
+- Preserve the referral code during registration.
+- Credit a referral only after a valid new registration is completed.
+- Do not count the original student as their own referral.
+- Do not count duplicate email addresses as new registrations.
+- Prevent repeated submissions from artificially increasing referral totals.
+
+For the simulation, allow test users and sample data to demonstrate how the referral system works.
+
+### Page D: Campus Ambassador Dashboard
+
+Create an ambassador portal.
+
+Each ambassador should be assigned a unique ambassador code.
+
+Display:
+
+- Ambassador name.
+- College.
+- Referral link.
+- Total successful registrations.
+- Number of registrations attributed to the ambassador.
+- Registration ranking.
+- Progress toward a configurable target.
+
+Allow the campaign organizer to register or deactivate ambassadors.
+
+Provide a leaderboard showing the top-performing ambassadors.
+
+Example targets can be configured for demonstration purposes rather than treated as actual results.
+
+### Page E: Admin Growth Dashboard
+
+Create an organizer-only dashboard.
+
+Display these KPI cards:
+
+1. Total registrations.
+2. Target remaining.
+3. Daily registrations.
+4. Referral-driven registrations.
+5. Number of active ambassadors.
+6. Budget spent.
+7. Cost per registration.
+8. Target completion percentage.
+
+Use the following formulas:
+
+Target remaining = max(0, 500 − valid registrations)
+
+Target completion = valid registrations ÷ 500 × 100
+
+Cost per registration = actual campaign spend ÷ valid registrations
+
+If there are zero registrations, display cost per registration as unavailable rather than dividing by zero.
+
+Include charts for:
+
+- Registrations by day.
+- Registrations by channel.
+- Referral-driven versus non-referral registrations.
+- Ambassador performance.
+- Budget allocation.
+
+Add filters for date range, college, branch, and acquisition channel.
+
+The dashboard must distinguish actual recorded data from simulated demonstration data.
+
+### Page F: Campaign Planner
+
+Build a 7-day campaign planning module.
+
+Use these campaign channels:
+
+1. College WhatsApp groups.
+2. College clubs and placement cells.
+3. Campus ambassadors.
+4. Student email outreach.
+5. Referral sharing.
+
+For every channel, display:
+
+- Planned registrations.
+- Actual registrations.
+- Estimated cost.
+- Actual cost.
+- Conversion rate, when measurable.
+- Campaign status.
+
+Allow the organizer to edit channel targets and budgets.
+
+Display a warning if total planned spending exceeds ₹2,000.
+
+### Page G: AI Growth Assistant
+
+Create an AI-assisted campaign recommendation panel.
+
+The assistant should analyze the available campaign metrics and suggest practical actions.
+
+Example recommendations:
+
+- "Referral registrations are growing more slowly than expected. Test a clearer WhatsApp message and a simpler referral process."
+- "College A is generating more registrations than College B. Consider reallocating ambassador effort toward College A."
+- "The campaign is behind its daily target. Ask existing ambassadors to share the registration link in additional permitted student groups."
+
+AI recommendations must use available metrics when possible. If the app has insufficient data, clearly label recommendations as general suggestions.
+
+Do not fabricate campaign results.
+
+If an AI API is unavailable, implement a rule-based recommendation engine so the feature still works.
+
+## 5. Registration Database
+
+Create the following logical database tables.
+
+### Students
+
+- id
+- full_name
+- email
+- college
+- branch
+- graduation_year
+- interested_domain
+- referral_code
+- referred_by
+- registration_date
+- acquisition_channel
+- consent_status
+
+### Ambassadors
+
+- id
+- name
+- college
+- ambassador_code
+- status
+- created_at
+
+### Referrals
+
+- id
+- referrer_student_id
+- referred_student_id
+- referral_code
+- status
+- created_at
+
+### Campaign Channels
+
+- id
+- channel_name
+- planned_registrations
+- actual_registrations
+- planned_budget
+- actual_spend
+
+### Campaign Events
+
+- id
+- event_type
+- campaign_channel
+- event_timestamp
+- anonymous_session_id
+
+Avoid collecting unnecessary personal information. Protect admin functionality and do not expose student email addresses publicly.
+
+## 6. Campaign Strategy
+
+Use the following initial registration targets:
+
+- Campus ambassadors: 150 registrations.
+- WhatsApp student groups: 140 registrations.
+- College clubs and placement cells: 100 registrations.
+- Student email outreach: 60 registrations.
+- Referral sharing: 50 registrations.
+
+Total target: 500 registrations.
+
+These are planning assumptions, not guaranteed outcomes. Prevent double-counting by assigning each valid registration to one primary acquisition channel and tracking referral attribution separately.
+
+Suggested budget:
+
+- Ambassador and outreach materials: ₹500.
+- Campus promotional materials: ₹400.
+- Creative design and content distribution: ₹300.
+- Contingency budget: ₹300.
+- Testing and campaign optimization: ₹500.
+
+Total: ₹2,000.
+
+The plan should prioritize existing student networks, free digital distribution, and measurable referral activity. All spending should be optional and subject to the organizer's approval.
+
+## 7. Seven-Day Campaign Calendar
+
+Day 1: Set up the registration page, referral tracking, campaign creatives, and ambassador list.
+
+Day 2: Launch through college clubs, placement cells, and student WhatsApp groups.
+
+Day 3: Activate campus ambassadors and distribute unique referral links.
+
+Day 4: Review registrations by channel and identify underperforming channels.
+
+Day 5: Share a progress update and encourage students to forward their referral links.
+
+Day 6: Focus on colleges and channels producing registrations at the lowest cost.
+
+Day 7: Conduct the final reminder campaign, validate registrations, and generate the final campaign report.
+
+## 8. Security and Reliability
+
+Implement:
+
+- Email uniqueness constraints.
+- Server-side form validation.
+- Rate limiting on registration endpoints.
+- Secure admin authentication.
+- Protection against unauthorized access to student information.
+- Input sanitization.
+- Error handling.
+- Environment variables for API keys.
+- Database persistence.
+- Clear separation between demo and production data.
+
+Do not include real student data in sample datasets.
+
+## 9. Demo Mode
+
+Create a dedicated demo mode.
+
+The demo should include:
+
+- Synthetic student registrations.
+- Sample colleges.
+- Sample referral codes.
+- Sample ambassador rankings.
+- Simulated daily registration data.
+- Example AI recommendations.
+
+Include a "Load Demo Data" button and a "Reset Demo" button.
+
+Never mix simulated records with real registrations without clearly identifying their source.
+
+Make the dashboard functional immediately after launching the application.
+
+## 10. Required Deliverables
+
+Generate:
+
+1. Complete source code.
+2. A working student registration flow.
+3. A functional referral tracking system.
+4. An ambassador dashboard.
+5. An admin growth dashboard.
+6. An AI-assisted recommendation feature.
+7. Sample demo data.
+8. A README with installation and deployment instructions.
+9. A test checklist.
+10. A deployment guide.
+
+Ensure every major button works, navigation is functional, and the application runs without errors.
+
+Prioritize working functionality over decorative elements.
+
+The final result should demonstrate how a student can move from seeing a campaign message to registering, sharing a referral link, and helping the organizer measure growth.
